@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "balance")
-public class Balance {
+public class AccountBalance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,10 +14,10 @@ public class Balance {
     @Column(name = "balance")
     private long balance;
 
-    public Balance() {
+    public AccountBalance() {
     }
 
-    public Balance(int id, long balance) {
+    public AccountBalance(int id, long balance) {
         this.id = id;
         this.balance = balance;
     }
