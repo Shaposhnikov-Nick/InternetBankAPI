@@ -1,5 +1,6 @@
-package org.bank.dto;
+package org.bank.service;
 
+import org.bank.dto.AccountBalanceDto;
 import org.bank.entity.AccountBalance;
 import org.springframework.stereotype.Service;
 

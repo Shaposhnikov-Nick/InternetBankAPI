@@ -7,6 +7,7 @@ public class AccountBalanceDto {
 
         private long balance;
 
+        // сумма, на которую изменяется баланс счета
         private long changeBalance;
 
         public AccountBalanceDto() {
