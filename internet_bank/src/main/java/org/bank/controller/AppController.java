@@ -2,9 +2,13 @@ package org.bank.controller;
 
 import org.bank.dto.AccountBalanceDto;
 import org.bank.entity.AccountBalance;
+import org.bank.entity.Operation;
 import org.bank.service.AccountBalanceService;
+import org.bank.service.OperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -12,6 +16,9 @@ public class AppController {
 
     @Autowired
     private AccountBalanceService accountBalanceService;
+
+    @Autowired
+    private OperationService operationService;
 
     // получение баланса клиента по id
     @GetMapping("/balance/{id}")
@@ -29,5 +36,11 @@ public class AppController {
     @PutMapping("/put")
     public AccountBalance putMoney(@RequestBody AccountBalanceDto accountBalanceDto){
         return accountBalanceService.putMoney(accountBalanceDto);
+    }
+
+    // получение списка операций за выбранный диапазон времени
+    @GetMapping("/operation")
+    public List<Operation> getOperationList(){
+        return operationService.getOperationList();
     }
 }

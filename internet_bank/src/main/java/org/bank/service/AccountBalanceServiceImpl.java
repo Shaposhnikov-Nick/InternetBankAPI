@@ -1,18 +1,26 @@
 package org.bank.service;
 
 import org.bank.dao.AccountBalanceDAO;
+import org.bank.dao.OperationDAO;
 import org.bank.dto.AccountBalanceDto;
 import org.bank.entity.AccountBalance;
+import org.bank.entity.Operation;
 import org.bank.exception_handling.InsufficientFundsOnTheAccountException;
+import org.bank.type.OperationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
 
 @Service
 public class AccountBalanceServiceImpl implements AccountBalanceService {
 
     @Autowired
     private AccountBalanceDAO accountBalanceDAO;
+
+    @Autowired
+    private OperationDAO operationDAO;
 
     @Override
     @Transactional
@@ -31,6 +39,13 @@ public class AccountBalanceServiceImpl implements AccountBalanceService {
             accountBalance.setBalance(accountBalance.getBalance() - accountBalanceDto.getChangeBalance());
             accountBalanceDAO.saveBalance(accountBalance);
         }
+
+        Operation operation = new Operation();
+        operation.setUserId(accountBalance.getId());
+        operation.setDate(new Date());
+        operation.setOperationType(OperationType.RECEIVING);
+        operationDAO.saveOperation(operation);
+
         return accountBalance;
     }
 
@@ -40,6 +55,13 @@ public class AccountBalanceServiceImpl implements AccountBalanceService {
         AccountBalance accountBalance = accountBalanceDAO.getBalance(accountBalanceDto.getId());
         accountBalance.setBalance(accountBalance.getBalance() + accountBalanceDto.getChangeBalance());
         accountBalanceDAO.saveBalance(accountBalance);
+
+        Operation operation = new Operation();
+        operation.setUserId(accountBalance.getId());
+        operation.setDate(new Date());
+        operation.setOperationType(OperationType.INVESTING);
+        operationDAO.saveOperation(operation);
+
         return accountBalance;
     }
 }
