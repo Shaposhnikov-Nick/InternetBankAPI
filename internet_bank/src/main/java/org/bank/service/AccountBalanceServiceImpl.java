@@ -44,6 +44,7 @@ public class AccountBalanceServiceImpl implements AccountBalanceService {
         operation.setUserId(accountBalance.getId());
         operation.setDate(new Date());
         operation.setOperationType(OperationType.RECEIVING);
+        operation.setAmount(accountBalanceDto.getChangeBalance());
         operationDAO.saveOperation(operation);
 
         return accountBalance;
@@ -60,6 +61,7 @@ public class AccountBalanceServiceImpl implements AccountBalanceService {
         operation.setUserId(accountBalance.getId());
         operation.setDate(new Date());
         operation.setOperationType(OperationType.INVESTING);
+        operation.setAmount(accountBalanceDto.getChangeBalance());
         operationDAO.saveOperation(operation);
 
         return accountBalance;

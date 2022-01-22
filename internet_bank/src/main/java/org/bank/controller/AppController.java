@@ -3,11 +3,13 @@ package org.bank.controller;
 import org.bank.dto.AccountBalanceDto;
 import org.bank.entity.AccountBalance;
 import org.bank.entity.Operation;
+import org.bank.model.OperationRequest;
 import org.bank.service.AccountBalanceService;
 import org.bank.service.OperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -38,9 +40,15 @@ public class AppController {
         return accountBalanceService.putMoney(accountBalanceDto);
     }
 
-    // получение списка операций за выбранный диапазон времени
+//    получение списка операций без диапазона
     @GetMapping("/operation")
     public List<Operation> getOperationList(){
         return operationService.getOperationList();
+    }
+
+    // получение списка операций за выбранный диапазон времени
+    @PostMapping("/operation")
+    public List<Operation> getOperationList(@RequestBody OperationRequest operationRequest){
+        return operationService.getOperationList(operationRequest);
     }
 }

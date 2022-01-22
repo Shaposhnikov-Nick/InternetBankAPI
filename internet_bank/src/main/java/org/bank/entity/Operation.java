@@ -1,5 +1,6 @@
 package org.bank.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.bank.type.OperationType;
 
 import javax.persistence.*;
@@ -21,16 +22,21 @@ public class Operation {
     private OperationType operationType;
 
     @Column(name = "date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
+
+    @Column(name = "amount")
+    private long amount;
 
     public Operation() {
     }
 
-    public Operation(int id, int userId, OperationType operationType, Date date) {
+    public Operation(int id, int userId, OperationType operationType, Date date, long amount) {
         this.id = id;
         this.userId = userId;
         this.operationType = operationType;
         this.date = date;
+        this.amount = amount;
     }
 
     public int getId() {
@@ -63,6 +69,14 @@ public class Operation {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(long amount) {
+        this.amount = amount;
     }
 
     @Override
