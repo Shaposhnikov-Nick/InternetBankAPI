@@ -2,41 +2,55 @@ package org.bank.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.bank.type.OperationType;
-
 import javax.persistence.*;
 import java.util.Date;
+
+/*
+Операции, выполняемые клиентами
+ */
 
 @Entity
 @Table(name = "operation")
 public class Operation {
 
+    // id операции
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
+    // id клиента, выполняющего операцию
     @Column(name = "user_id")
     private int userId;
 
+    // тип операции
     @Column(name = "operation_type")
     private OperationType operationType;
 
+    // id клиента, в отношении которого выполняется операция
+    @Column(name = "client_id")
+    private int clientId;
+
+    // сумма, на которую выполняется операция
+    @Column(name = "amount")
+    private long amount;
+
+    // дата выполнения операции
     @Column(name = "date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date date;
 
-    @Column(name = "amount")
-    private long amount;
 
     public Operation() {
     }
 
-    public Operation(int id, int userId, OperationType operationType, Date date, long amount) {
+    public Operation(int id, int userId, OperationType operationType, Date date, long amount, int clientId) {
         this.id = id;
         this.userId = userId;
         this.operationType = operationType;
         this.date = date;
         this.amount = amount;
+        this.clientId = clientId;
     }
 
     public int getId() {
@@ -77,6 +91,14 @@ public class Operation {
 
     public void setAmount(long amount) {
         this.amount = amount;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(int clientId) {
+        this.clientId = clientId;
     }
 
     @Override

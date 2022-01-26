@@ -12,12 +12,14 @@ public class AccountBalanceDAOImpl implements AccountBalanceDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
+    // получение баланса поьзователя по id
     @Override
     public AccountBalance getBalance(int id) {
         Session session = sessionFactory.getCurrentSession();
         return session.get(AccountBalance.class, id);
     }
 
+    // сохранение баланса пользователя в БД
     @Override
     public void saveBalance(AccountBalance accountBalance) {
         Session session = sessionFactory.getCurrentSession();

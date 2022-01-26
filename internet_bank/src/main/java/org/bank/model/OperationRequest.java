@@ -1,16 +1,20 @@
 package org.bank.model;
 
-
 import java.util.Date;
+
+/*
+Тело запроса на получение списка операций пользователя за указанный промежуток времени
+ */
 
 public class OperationRequest {
 
+    // id клиента
     private int userId;
 
-    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    // начало диапазона дат
     private Date dateFrom;
 
-   // @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+   // конец диапазона дат
     private Date dateTo;
 
     public OperationRequest(int user_id, Date dateFrom, Date dateTo) {

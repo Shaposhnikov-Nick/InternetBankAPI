@@ -1,8 +1,13 @@
 package org.bank.type;
 
+/*
+Типы выполняемых переводов
+ */
 public enum OperationType {
     RECEIVING("Receiving money"),
-    INVESTING("Investing money");
+    INVESTING("Investing money"),
+    TRANSFER_TO("Transfer money to"),
+    TRANSFER_FROM("Transfer money from");
 
     private String operation;
 

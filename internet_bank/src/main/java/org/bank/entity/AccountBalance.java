@@ -2,15 +2,21 @@ package org.bank.entity;
 
 import javax.persistence.*;
 
+/*
+Текущий баланс клиентов
+ */
+
 @Entity
 @Table(name = "balance")
 public class AccountBalance {
 
+    // id клиента
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
+    // баланс клиента
     @Column(name = "balance")
     private long balance;
 

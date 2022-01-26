@@ -1,16 +1,21 @@
-package org.bank.dto;
+package org.bank.model;
 
+/*
+Тело запроса изменения баланса клиента
+ */
 
-public class AccountBalanceDto {
+public class AccountBalanceRequest {
 
+        // id клиента
         private int id;
 
+        // текущий баланс счета клента
         private long balance;
 
         // сумма, на которую изменяется баланс счета
         private long changeBalance;
 
-        public AccountBalanceDto() {
+        public AccountBalanceRequest() {
         }
 
         public int getId() {
