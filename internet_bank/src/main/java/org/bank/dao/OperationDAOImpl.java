@@ -25,15 +25,13 @@ public class OperationDAOImpl implements OperationDAO {
 
         // если дата начала или окончания диапазона не указана
         if (operationRequest.getDateFrom() == null || operationRequest.getDateTo() == null) {
-
-            // список операций за все время
-            query = session.createQuery("select id, userId, operationType, clientId, amount, date from Operation " +
+            query = session.createQuery("from Operation " +
                     "where userId =:userId");
             query.setParameter("userId", operationRequest.getUserId());
         } else {
 
             // список операций за указанный диапазон
-            query = session.createQuery("select id, userId, operationType, clientId, amount, date from Operation " +
+            query = session.createQuery("from Operation " +
                     "where userId =:userId AND date between :dateFrom AND :dateTo");
             query.setParameter("userId", operationRequest.getUserId());
             query.setParameter("dateFrom", operationRequest.getDateFrom());
